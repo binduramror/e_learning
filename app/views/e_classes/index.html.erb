@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>E Classes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @e_classes.each do |e_class| %>
+      <tr>
+        <td><%= e_class.title %></td>
+        <td><%= link_to 'Show', e_class %></td>
+        <td><%= link_to 'Edit', edit_e_class_path(e_class) %></td>
+        <td><%= link_to 'Destroy', e_class, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New E Class', new_e_class_path %>

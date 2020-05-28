@@ -1,0 +1,2 @@
+class EClass < ApplicationRecord
+end

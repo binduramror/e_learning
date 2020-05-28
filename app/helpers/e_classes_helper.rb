@@ -1,0 +1,2 @@
+module EClassesHelper
+end
