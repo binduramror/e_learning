@@ -1,6 +1,24 @@
 class EClassesController < ApplicationController
   before_action :set_e_class, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
 
+  #home page
+  def home
+  end
+
+  def about
+  end
+
+  def services
+  end
+
+  def contact_us
+  end
+
+  def blog
+  end
+
+  
   # GET /e_classes
   # GET /e_classes.json
   def index
@@ -10,6 +28,9 @@ class EClassesController < ApplicationController
   # GET /e_classes/1
   # GET /e_classes/1.json
   def show
+    binding.pry
+    @subjects = @e_class.subjects.all
+    @subject = @e_class.subjects.build
   end
 
   # GET /e_classes/new

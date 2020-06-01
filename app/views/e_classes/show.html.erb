@@ -5,5 +5,19 @@
   <%= @e_class.title %>
 </p>
 
+
+
+
+<h3>Subjects</h3>
+<% @subjects.each do |subject| %>
+  <div>
+    <strong><%= subject.name %></strong>
+    <br>
+    <p><%= link_to 'Delete', subject_path(subject), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
+<% end %>
+<%= render partial: 'subjects/form', locals: { subject: @subject } %>
+
+
 <%= link_to 'Edit', edit_e_class_path(@e_class) %> |
 <%= link_to 'Back', e_classes_path %>

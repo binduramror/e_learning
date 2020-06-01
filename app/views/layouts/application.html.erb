@@ -5,11 +5,64 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div id="header">
+      <div> <a href="index.html"><img src="images/logo.gif" alt=""></a>
+        <ul class="nav">
+          <li class="current"><a href="/home">Home</a></li>
+          <li><a href="/about">About us</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/contact_us">Contact us</a></li>
+          
+        </ul>
+
+        <ul class="nav">
+          <li>
+            <% if user_signed_in? %>
+              Logged in as <strong><%= current_user.email %></strong>.
+              <%= link_to 'Edit profile', edit_user_registration_path %> |
+              <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
+            <% else %>
+              <%= link_to "Sign up", new_user_registration_path  %> |
+              <%= link_to "Login", new_user_session_path  %>
+            <% end %>
+          </li>
+          <li> <% if user_signed_in? %>  <%= link_to 'Classes', e_classes_path %> <% end %></li>
+          <li> <% if user_signed_in? %> <%= link_to 'Subjects', subjects_path %>  <% end %> </li>
+          <li> <% if user_signed_in? %> <%= link_to 'Students', students_path %> <% end %> </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <% if notice %>
+        <p><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p><%= alert %></p>
+      <% end %>
+      <%= yield %>
+    </div>
+    <footer>
+      <div id="footer">
+        <div>
+          <div> <span>Follow us</span> <a href="#" class="facebook">Facebook</a> <a href="#" class="subscribe">Subscribe</a> <a href="#" class="twitter">Twitter</a> <a href="#" class="flicker">Flickr</a> </div>
+          <ul>
+            <li> <a href="#"><img src="images/playing-in-grass.gif" alt=""></a>
+              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna.</p>
+              <a href="#" class="readmore">Read more</a> </li>
+            <li> <a href="#"><img src="images/baby-smiling.gif" alt=""></a>
+              <p>Sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud.</p>
+              <a href="#" class="readmore">Read more</a> </li>
+          </ul>
+        </div>
+        <p class="footnote">Copyright &copy; 2012 <a href="#">School Name</a> All rights reserved | Website Template By <a target="_blank" href="http://www.freewebsitetemplates.com/">freewebsitetemplates.com</a></p>
+      </div>
+    </footer>
   </body>
 </html>
